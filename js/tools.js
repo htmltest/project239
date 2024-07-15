@@ -44,6 +44,31 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+    $('.header-links a').click(function(e) {
+        var curHash = $(this).attr('href').split('#')[1];
+        var curBlock = $('[data-id=' + curHash + ']');
+        if (curBlock.length == 1) {
+            if (curBlock.hasClass('main-participation')) {
+                curBlock.addClass('open');
+            }
+            $('html, body').animate({'scrollTop': curBlock.offset().top});
+            e.preventDefault();
+        }
+    });
+
+});
+
+$(window).on('load', function() {
+    if (window.location.hash != '') {
+        var curHash = window.location.hash.replace('#', '');
+        var curBlock = $('[data-id=' + curHash + ']');
+        if (curBlock.length == 1) {
+            if (curBlock.hasClass('main-participation')) {
+                curBlock.addClass('open');
+            }
+            $('html, body').animate({'scrollTop': curBlock.offset().top});
+        }
+    }
 });
 
 function initForm(curForm) {
